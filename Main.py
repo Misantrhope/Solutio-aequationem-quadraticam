@@ -87,7 +87,8 @@ class Main(QMainWindow):
                 QApplication.processEvents()
 
         if self.with_explains.isChecked():
-            self.explanations.setText('Используйте кнопки "Назад" и "Далее" , чтобы увидеть пошаговое обьяснение')
+            self.explanations.setText('Используйте кнопки "Назад" и "Далее" , чтобы увидеть пошаговое обьяснение.'
+                                      ' Перед тем как вводить новое уравнение нажмите на кнопку очистить.')
 
     def resets(self):
         self.explanations.setText('')
