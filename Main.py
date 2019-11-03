@@ -84,6 +84,7 @@ class Main(QMainWindow):
 
     def resets(self):
         self.explanations.setText('')
+        self.count = 1
 
     def fun_back(self):
 
@@ -95,43 +96,44 @@ class Main(QMainWindow):
         discriminant = discriminant ** 0.5
         x1 = (((b * -1) + discriminant) / (2 * a))
         x2 = (((b * -1) - discriminant) / (2 * a))
+        x = (b * -1) / (2 * a)
 
-        if self.count < 0:
-            self.count = 0
+        if self.count <= 0:
+            self.count = 1
 
-        if self.ds < 0:
-            if self.count == 0:
+        elif self.ds < 0:
+            if self.count == 1:
                 self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.eq) + '\n' +
                                           "a =" + str(a) + ";" + " " + 'b= ' + str(b) + ';' + ' ' + 'c=' + str(
                     c))
 
-            elif self.count == 1:
+            elif self.count == 2:
                 self.explanations.setText('Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(
                     self.ds))
 
-            elif self.count == 2:
+            elif self.count == 3:
                 self.explanations.setText('Так как D < 0, то уравнение не имеет корней')
 
         elif self.ds == 0:
-            if self.count == 0:
+            if self.count == 1:
                 self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.eq) + '\n' +
                                           "a =" + str(a) + ";" + " " + 'b= ' + str(b) + ';' + ' ' + 'c=' + str(
                     c))
-            elif self.count == 1:
+            elif self.count == 2:
                 self.explanations.setText('Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(
                     self.ds))
-            elif self.count == 2:
+            elif self.count == 3:
                 self.explanations.setText('Так как D = 0, то уравнение имеет один корень:' + '(-b) / (2a)' +
-                                          '\n' + str(x2))
+                                          '\n' + str(x))
         else:
-            if self.count == 0:
+            if self.count == 1:
                 self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.eq) + '\n' +
                                           "a =" + str(a) + ";" + " " + 'b= ' + str(b) + ';' + ' ' + 'c=' + str(
                     c) + '\n' + 'D = b² - 4ac')
-            elif self.count == 1:
+            elif self.count == 2:
                 self.explanations.setText('Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(
                     self.ds))
-            elif self.count == 2:
+            elif self.count == 3:
                 self.explanations.setText(
                     'Так как D = 0, то уравнение имеет два корня корень:' + '(-b ± D ) / (2a) + ' + ' ' +
                     '\n' + 'Первый корень:' + ' ' + str(
@@ -144,45 +146,49 @@ class Main(QMainWindow):
         discriminant = (b ** 2) - 4 * a * c
         x1 = (((b * -1) + discriminant) / (2 * a))
         x2 = (((b * -1) - discriminant) / (2 * a))
+        x = (b * -1) / (2 * a)
+        self.count += 1
+        if self.count > 3:
+            self.count = 3
 
-        if self.ds < 0:
-            if self.count == 0:
+        elif self.ds < 0:
+            if self.count == 1:
                 self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.eq) + '\n' +
                                           "a =" + str(a) + ";" + " " + 'b= ' + str(b) + ';' + ' ' + 'c=' + str(
                     c))
 
-            elif self.count == 1:
+            elif self.count == 2:
                 self.explanations.setText('Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(
                     self.ds))
 
-            elif self.count == 2:
+            elif self.count == 3:
                 self.explanations.setText('Так как D < 0, то уравнение не имеет корней')
 
         elif self.ds == 0:
-            if self.count == 0:
+            if self.count == 1:
                 self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.eq) + '\n' +
                                           "a =" + str(a) + ";" + " " + 'b= ' + str(b) + ';' + ' ' + 'c=' + str(
                     c))
-            elif self.count == 1:
+            elif self.count == 2:
                 self.explanations.setText('Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(
                     self.ds))
-            elif self.count == 2:
+            elif self.count == 3:
                 self.explanations.setText('Так как D = 0, то уравнение имеет один корень:' + '(-b) / (2a)' +
-                                          '\n' + str(x2))
+                                          '\n' + str(x))
         else:
-            if self.count == 0:
+            if self.count == 1:
                 self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.eq) + '\n' +
                                           "a =" + str(a) + ";" + " " + 'b= ' + str(b) + ';' + ' ' + 'c=' + str(
                     c) + '\n' + 'D = b² - 4ac')
-            elif self.count == 1:
+            elif self.count == 2:
                 self.explanations.setText('Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(
                     self.ds))
-            elif self.count == 2:
+            elif self.count == 3:
                 self.explanations.setText(
                     'Так как D = 0, то уравнение имеет два корня корень:' + '(-b ± D ) / (2a) + ' + ' ' +
                     '\n' + 'Первый корень:' + ' ' + str(
                         x1) + '\n' + 'Второй корень:' + ' ' + str(x2))
-        self.count += 1
+
 
 
 app = QApplication(sys.argv)
