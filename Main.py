@@ -11,9 +11,9 @@ class Main(QMainWindow):
         self.start.clicked.connect(self.solve)
         self.reset.clicked.connect(self.resets)
         self.count = 0
-        self.ds = 0
-        # ds = Не вычесленный дискриминант
-        self.eq = ''
+        self.str_discriminant = 0
+        #   Не вычесленный дискриминант
+        self.the_equation = ''
         # Переменная в которой хранится уравнение в строчном виде
         self.back.clicked.connect(self.fun_back)
         self.next.clicked.connect(self.fun_next)
@@ -31,29 +31,29 @@ class Main(QMainWindow):
                                   str(b) + 'x' + str(c) + ' ' + '= 0')
 
             QApplication.processEvents()
-            self.eq = (str(a) + 'x²' +
-                       str(b) + 'x' + str(c) + ' ' + '= 0')
+            self.the_equation = (str(a) + 'x²' +
+                                 str(b) + 'x' + str(c) + ' ' + '= 0')
         elif b < 0 and c >= 0:
             self.equation.setText('Ваше уравнение будет выглядить так:' + ' ' + str(a) + 'x²' +
                                   str(b) + 'x' + '+' + c + '= 0')
             QApplication.processEvents()
-            self.eq = (str(a) + 'x²' +
-                       str(b) + 'x' + '+' + c + '= 0')
+            self.the_equation = (str(a) + 'x²' +
+                                 str(b) + 'x' + '+' + c + '= 0')
         elif b >= 0 and c < 0:
             self.equation.setText('Ваше уравнение будет выглядить так:' + ' ' + str(a) + 'x²' + '+' +
                                   str(b) + 'x' + str(c) + ' ' + '= 0')
-            self.eq = (str(a) + 'x²' + '+' +
-                       str(b) + 'x' + str(c) + ' ' + '= 0')
+            self.the_equation = (str(a) + 'x²' + '+' +
+                                 str(b) + 'x' + str(c) + ' ' + '= 0')
             QApplication.processEvents()
         elif b >= 0 and c >= 0:
             self.equation.setText('Ваше уравнение будет выглядить так:' + ' ' + str(a) + 'x²' + '+' +
                                   str(b) + 'x' + "+" + str(c) + ' ' + '= 0')
-            self.eq = (str(a) + 'x²' + '+' +
-                       str(b) + 'x' + "+" + str(c) + ' ' + '= 0')
+            self.the_equation = (str(a) + 'x²' + '+' +
+                                 str(b) + 'x' + "+" + str(c) + ' ' + '= 0')
             QApplication.processEvents()
 
         discriminant = (b ** 2) - 4 * a * c
-        self.ds = discriminant
+        self.str_discriminant = discriminant
         discriminant = discriminant ** 0.5
 
         x1 = (((b * -1) + discriminant) / (2 * a))
@@ -63,12 +63,12 @@ class Main(QMainWindow):
         self.x_2 = x2
         self.x = x
 
-        if int(self.ds) < 0:
+        if int(self.str_discriminant) < 0:
             self.x1.setText('Уравнение не имеет корней')
             QApplication.processEvents()
             self.x2.setText('')
             QApplication.processEvents()
-        elif int(self.ds) == 0:
+        elif int(self.str_discriminant) == 0:
             self.x1.setText('Уравнение имеет один корень:' + " " + str(x))
             QApplication.processEvents()
             self.x2.setText('')
@@ -82,7 +82,7 @@ class Main(QMainWindow):
 
                 self.x1.setText(
                     'Корни уравнения:' + ' ' + '(' + '-' + str(b) + '±' + '√' + str(
-                        self.ds) + ')' + '/' + '(' + '2' + str(
+                        self.str_discriminant) + ')' + '/' + '(' + '2' + str(
                         a) + ')')
                 QApplication.processEvents()
 
@@ -100,44 +100,42 @@ class Main(QMainWindow):
         b = int(self.input_b.text())
         c = int(self.input_c.text())
         self.count -= 1
-        discriminant = (b ** 2) - 4 * a * c
-        discriminant = discriminant ** 0.5
 
         if self.count <= 0:
             self.count = 1
 
-        elif self.ds < 0:
+        elif self.str_discriminant < 0:
             if self.count == 1:
-                self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.eq) + '\n' +
+                self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.the_equation) + '\n' +
                                           "a =" + str(a) + ";" + " " + 'b= ' + str(b) + ';' + ' ' + 'c=' + str(
                     c))
 
             elif self.count == 2:
-                self.explanations.setText('Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(
-                    self.ds))
+                self.explanations.setText(
+                    'Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(self.str_discriminant))
 
             elif self.count == 3:
                 self.explanations.setText('Так как D < 0, то уравнение не имеет корней')
 
-        elif self.ds == 0:
+        elif self.str_discriminant == 0:
             if self.count == 1:
-                self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.eq) + '\n' +
+                self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.the_equation) + '\n' +
                                           "a =" + str(a) + ";" + " " + 'b= ' + str(b) + ';' + ' ' + 'c=' + str(
                     c))
             elif self.count == 2:
-                self.explanations.setText('Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(
-                    self.ds))
+                self.explanations.setText(
+                    'Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(self.str_discriminant))
             elif self.count == 3:
                 self.explanations.setText('Так как D = 0, то уравнение имеет один корень:' + '(-b) / (2a)' +
                                           '\n' + str(self.x))
         else:
             if self.count == 1:
-                self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.eq) + '\n' +
+                self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.the_equation) + '\n' +
                                           "a =" + str(a) + ";" + " " + 'b= ' + str(b) + ';' + ' ' + 'c=' + str(
                     c) + '\n' + 'D = b² - 4ac')
             elif self.count == 2:
-                self.explanations.setText('Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(
-                    self.ds))
+                self.explanations.setText(
+                    'Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(self.str_discriminant))
             elif self.count == 3:
                 self.explanations.setText(
                     'Так как D = 0, то уравнение имеет два корня корень:' + '(-b ± D ) / (2a) + ' + ' ' +
@@ -152,44 +150,43 @@ class Main(QMainWindow):
         if self.count > 3:
             self.count = 3
 
-        elif self.ds < 0:
+        elif self.str_discriminant < 0:
             if self.count == 1:
-                self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.eq) + '\n' +
+                self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.the_equation) + '\n' +
                                           "a =" + str(a) + ";" + " " + 'b= ' + str(b) + ';' + ' ' + 'c=' + str(
                     c))
 
             elif self.count == 2:
                 self.explanations.setText('Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(
-                    self.ds))
+                    self.str_discriminant))
 
             elif self.count == 3:
                 self.explanations.setText('Так как D < 0, то уравнение не имеет корней')
 
-        elif self.ds == 0:
+        elif self.str_discriminant == 0:
             if self.count == 1:
-                self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.eq) + '\n' +
+                self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.the_equation) + '\n' +
                                           "a =" + str(a) + ";" + " " + 'b= ' + str(b) + ';' + ' ' + 'c=' + str(
                     c))
             elif self.count == 2:
                 self.explanations.setText('Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(
-                    self.ds))
+                    self.str_discriminant))
             elif self.count == 3:
                 self.explanations.setText('Так как D = 0, то уравнение имеет один корень:' + '(-b) / (2a)' +
                                           '\n' + str(self.x))
         else:
             if self.count == 1:
-                self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.eq) + '\n' +
+                self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.the_equation) + '\n' +
                                           "a =" + str(a) + ";" + " " + 'b= ' + str(b) + ';' + ' ' + 'c=' + str(
                     c) + '\n' + 'D = b² - 4ac')
             elif self.count == 2:
                 self.explanations.setText('Формула нахождения дискриминанта: D = b² - 4ac' + ' ' + 'D=' + str(
-                    self.ds))
+                    self.str_discriminant))
             elif self.count == 3:
                 self.explanations.setText(
                     'Так как D = 0, то уравнение имеет два корня корень:' + '(-b ± D ) / (2a) + ' + ' ' +
                     '\n' + 'Первый корень:' + ' ' + str(
                         self.x_1) + '\n' + 'Второй корень:' + ' ' + str(self.x_2))
-
 
 
 app = QApplication(sys.argv)
