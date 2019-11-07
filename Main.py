@@ -100,7 +100,7 @@ class Main(QMainWindow):
                 else:
                     self.x1.setText(
                         'Корни уравнения:' + ' ' + '(' + '-' + str(b) + '±' + '√' + str(
-                            self.str_discriminant) + ')' + '/' + '(' + '2' + str(
+                            self.str_discriminant) + ')' + '/' + '(' + '2' + '*' + str(
                             a) + ')')
                     QApplication.processEvents()
 
