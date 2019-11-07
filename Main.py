@@ -39,10 +39,10 @@ class Main(QMainWindow):
                                  str(b) + 'x' + str(c) + ' ' + '= 0')
         elif b < 0 and c >= 0:
             self.equation.setText('Ваше уравнение будет выглядить так:' + ' ' + str(a) + 'x²' +
-                                  str(b) + 'x' + '+' + c + '= 0')
+                                  str(b) + 'x' + '+' + str(c) + '= 0')
             QApplication.processEvents()
             self.the_equation = (str(a) + 'x²' +
-                                 str(b) + 'x' + '+' + c + '= 0')
+                                 str(b) + 'x' + '+' + str(c) + '= 0')
         elif b >= 0 and c < 0:
             self.equation.setText('Ваше уравнение будет выглядить так:' + ' ' + str(a) + 'x²' + '+' +
                                   str(b) + 'x' + str(c) + ' ' + '= 0')
