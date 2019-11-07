@@ -227,7 +227,6 @@ class Main(QMainWindow):
                 self.explanations.setText('Рассмотрим уравнение' + ' ' + str(self.the_equation) + '\n' +
                                           "a =" + str(a) + ";" + " " + 'b= ' + str(b) + ';' + ' ' + 'c=' + str(
                     c))
-
             elif self.count == 2:
                 if b % 2 == 0:
 
@@ -284,7 +283,6 @@ class Main(QMainWindow):
                                         c) + '\n' +
                                     'Следовательно данные числа подходят.')
                 if b % 2 == 0:
-
                     self.explanations.setText(
                         'Формула нахождения дискриминанта: D = k² - ac' + ' ' + '\n' + 'D=' + str(
                             k) + '²' + '-' + str(a) + '*' + str(c) + '\n' +
