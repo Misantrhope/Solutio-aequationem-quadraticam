@@ -149,7 +149,7 @@ p, li { white-space: pre-wrap; }
      <item>
       <widget class="QCheckBox" name="with_explains">
        <property name="text">
-        <string>С пояснением?</string>
+        <string>Пошаговый режим</string>
        </property>
       </widget>
      </item>

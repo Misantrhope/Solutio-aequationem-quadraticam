@@ -103,7 +103,7 @@ Temporary Items
 
 # Gradle
 .idea/**/gradle.xml
-.idea/**/libraries
+
 
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
@@ -165,8 +165,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
+
+
 parts/
 sdist/
 var/
@@ -248,13 +248,7 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
+
 
 # Spyder project settings
 .spyderproject
@@ -301,3 +295,9 @@ $RECYCLE.BIN/
 *.lnk
 
 /test.py
+.idea/.gitignore
+.idea/Discriminant.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
