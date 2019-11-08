@@ -68,41 +68,33 @@ class Main(QMainWindow):
         self.x = x
 
         if int(self.str_discriminant) < 0:
-            if self.with_explains.isChecked():
-                self.x1.setText('')
-            else:
-                self.x1.setText('Уравнение не имеет корней')
-                QApplication.processEvents()
-                self.x2.setText('')
-                QApplication.processEvents()
+
+            self.x1.setText('Уравнение не имеет корней')
+            QApplication.processEvents()
+            self.x2.setText('')
+            QApplication.processEvents()
         elif int(self.str_discriminant) == 0:
-            if self.with_explains.isChecked():
-                self.x1.setText('')
-            else:
-                self.x1.setText('Уравнение имеет один корень:' + " " + str(x))
-                QApplication.processEvents()
-                self.x2.setText('')
-                QApplication.processEvents()
+
+            self.x1.setText('Уравнение имеет один корень:' + " " + str(x))
+            QApplication.processEvents()
+            self.x2.setText('')
+            QApplication.processEvents()
 
         else:
             if discriminant % 1 == 0:
-                if self.with_explains.isChecked():
-                    self.x1.setText('')
-                    QApplication.processEvents()
-                else:
-                    self.x1.setText('Первый корень:' + " " + str(x1))
-                    QApplication.processEvents()
-                    self.x2.setText('Второй корень:' + " " + str(x2))
-                    QApplication.processEvents()
+
+                self.x1.setText('Первый корень:' + " " + str(x1))
+                QApplication.processEvents()
+                self.x2.setText('Второй корень:' + " " + str(x2))
+                QApplication.processEvents()
+
+
             else:
-                if self.with_explains.isChecked():
-                    self.x1.setText('')
-                else:
-                    self.x1.setText(
-                        'Корни уравнения:' + ' ' + '(' + '-' + str(b) + '±' + '√' + str(
-                            self.str_discriminant) + ')' + '/' + '(' + '2' + '*' + str(
-                            a) + ')')
-                    QApplication.processEvents()
+                self.x1.setText(
+                    'Корни уравнения:' + ' ' + '(' + '-' + str(b) + '±' + '√' + str(
+                        self.str_discriminant) + ')' + '/' + '(' + '2' + '*' + str(
+                        a) + ')')
+                QApplication.processEvents()
 
         if self.with_explains.isChecked():
             self.explanations.setText('Используйте кнопки "Назад" и "Далее" , чтобы увидеть пошаговое обьяснение.'
@@ -115,12 +107,13 @@ class Main(QMainWindow):
         self.x2.setText('')
 
     def fun_back(self):
-
         a = int(self.input_a.text())
         b = int(self.input_b.text())
         c = int(self.input_c.text())
         k = b // 2
         k = int(k)
+        discriminant = (b ** 2) - 4 * a * c
+        discriminant = discriminant ** 0.5
 
         k_discriminant = ((k ** 2) - (a * c))
         k_discriminant = int()
@@ -208,6 +201,10 @@ class Main(QMainWindow):
                     'Так как D = 0, то уравнение имеет два корня корень:' + '(-b ± D ) / (2a)' + ' ' +
                     '\n' + 'Первый корень:' + ' ' + str(
                         self.x_1) + '\n' + 'Второй корень:' + ' ' + str(self.x_2))
+                self.x1.setText(
+                    'Корни уравнения:' + ' ' + '(' + '-' + str(b) + '±' + '√' + str(
+                        self.str_discriminant) + ')' + '/' + '(' + '2' + '*' + str(
+                        a) + ')')
 
     def fun_next(self):
         a = int(self.input_a.text())
@@ -215,6 +212,8 @@ class Main(QMainWindow):
         c = int(self.input_c.text())
         k = b // 2
         k = int(k)
+        discriminant = (b ** 2) - 4 * a * c
+        discriminant = discriminant ** 0.5
 
         k_discriminant = ((k ** 2) - (a * c))
         k_discriminant = int(k_discriminant)
@@ -297,6 +296,10 @@ class Main(QMainWindow):
                     'Так как D = 0, то уравнение имеет два корня корень:' + '(-b ± D ) / (2a)' + ' ' +
                     '\n' + 'Первый корень:' + ' ' + str(
                         self.x_1) + '\n' + 'Второй корень:' + ' ' + str(self.x_2))
+                self.x1.setText(
+                    'Корни уравнения:' + ' ' + '(' + '-' + str(b) + '±' + '√' + str(
+                        self.str_discriminant) + ')' + '/' + '(' + '2' + '*' + str(
+                        a) + ')')
 
 
 app = QApplication(sys.argv)
