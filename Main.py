@@ -293,7 +293,7 @@ class Main(QMainWindow):
                         'D=' + '' + str(self.str_discriminant))
             elif self.count == 3:
                 self.explanations.setText(
-                    'Так как D = 0, то уравнение имеет два корня корень:' + '(-b ± D ) / (2a)' + ' ' +
+                    'Так как D > 0, то уравнение имеет два корня корень:' + '(-b ± D ) / (2a)' + ' ' +
                     '\n' + 'Первый корень:' + ' ' + str(
                         self.x_1) + '\n' + 'Второй корень:' + ' ' + str(self.x_2))
                 self.x1.setText(
